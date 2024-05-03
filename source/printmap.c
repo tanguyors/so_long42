@@ -34,7 +34,7 @@ void	print_map(char *line, t_data *game, int index)
 	}
 }
 
-void	fill_window(t_data *game)
+void	draw_win(t_data *game)
 {
 	int i;
 	char *moves;

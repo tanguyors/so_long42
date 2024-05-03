@@ -21,7 +21,7 @@ void	get_rows(t_data *game, char *path_map)
 	rows = 0;
 	fd = open(path_map, O_RDONLY);
 	if (fd < 0)
-		error_message("No map found.");
+		msg_err("No map found.");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -43,13 +43,13 @@ void	fill_map(t_data *game, char *path_map)
 	i = 0;
 	get_rows(game, path_map);
 	if (game->rows == 0)
-		error_message("Invalid map.");
+		msg_err("Invalid map.");
 	fd = open(path_map, O_RDONLY);
 	if (fd < 0)
-		error_message("No map found.");
+		msg_err("No map found.");
 	game->map = (char **)malloc(sizeof(char *) * (game->rows + 1));
 	if (game->map == NULL)
-		error_message("Memory allocation failed.");
+		msg_err("Memory allocation failed.");
 	while (i < game->rows)
 	{
 		game->map[i] = get_next_line(fd);

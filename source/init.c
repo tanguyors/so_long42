@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void	init_textures(t_data *game)
+void	initialisation_textures(t_data *game)
 {
 	game->textures.ground = NULL;
 	game->textures.coin = NULL;
@@ -26,7 +26,7 @@ void	init_textures(t_data *game)
 	game->textures.moves = NULL;
 }
 
-void	init_struct(t_data *game)
+void	initialisation_struct(t_data *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
@@ -47,5 +47,5 @@ void	init_struct(t_data *game)
 	game->moves = 0;
 	game->score = 0;
 	game->frames = 0;
-	init_textures(game);
+	initialisation_textures(game);
 }

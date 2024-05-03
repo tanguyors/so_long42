@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -81,14 +80,14 @@ typedef struct s_data
 }						t_data;
 
 // checkmap
-void					check_closed_map(t_data *game);
+void					checkmap(t_data *game);
 void					check_last_row(t_data *game);
-void					check_rect(t_data *game);
-void					count_map(t_data *game);
+void					is_rect(t_data *game);
+void					count_game_element(t_data *game);
 void					check_map(t_data *game);
 
 // flood_fill
-int						validmove(t_data *game, int row, int col);
+int						move_possibility(t_data *game, int row, int col);
 void					floodfill(t_data *game, int row, int col);
 void					check_flood(t_data *game);
 void					duplicate_map(t_data *game);
@@ -101,19 +100,19 @@ void					print_wall(t_data *game, int i, int index);
 
 // printmap
 void					print_map(char *line, t_data *game, int index);
-void					fill_window(t_data *game);
+void					draw_win(t_data *game);
 
 // openassets
 void					open_images(t_data *game);
 
 // init
-void					init_textures(t_data *game);
-void					init_struct(t_data *game);
+void					initialisation_textures(t_data *game);
+void					initialisation_struct(t_data *game);
 
 // free
-void					free_maps(t_data *game);
+void					free_map(t_data *game);
 void					free_textures(t_data *game);
-int						on_destroy(t_data *game);
+int						suppresion(t_data *game);
 
 // moov
 void					move_check(t_data *game);
@@ -130,5 +129,5 @@ void					fill_map(t_data *game, char *path_map);
 
 // main
 void					create_window(t_data *game);
-void					error_message(char *message);
+void					msg_err(char *message);
 #endif

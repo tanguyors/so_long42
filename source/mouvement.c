@@ -18,14 +18,14 @@ int	key_hook(int keycode, t_data *game)
 	if (keycode == 119 || keycode == 97 || keycode == 115 || keycode == 100)
 		update_player_position(game, keycode);
 	else if (keycode == ESC)
-		on_destroy(game);
+		suppresion(game);
 	return (0);
 }
 
 int	loop_hook(t_data *game)
 {
 	game->frames++;
-	fill_window(game);
+	draw_win(game);
 	usleep(40000);
 	return (0);
 }

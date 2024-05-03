@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void	error_message(char *message)
+void	msg_err(char *message)
 {
 	ft_putstr_fd(message, 1);
 	exit(EXIT_FAILURE);
@@ -22,13 +22,13 @@ void	create_window(t_data *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		error_message("mlx_init failed.");
+		msg_err("Error\n initialisation stop.");
 	game->win = mlx_new_window(game->mlx, game->cols * 32, game->rows * 32,
 			"so_long");
 	if (!game->win)
-		error_message("mlx_new_window failed.");
+		msg_err("Error\n mlx_new_window stop.");
 	open_images(game);
-	fill_window(game);
+	draw_win(game);
 }
 
 int	main(int ac, char **av)
@@ -36,17 +36,17 @@ int	main(int ac, char **av)
 	t_data	game;
 
 	if (ac != 2)
-		error_message("Wrong number of arguments. Usage: ./so_long <map.ber>");
+		msg_err("Error\n Mauvais nombre d'arguments. Utilise: ./so_long <map.ber>");
 	if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
-		error_message("Invalid file type. Must be: \"<name>.ber\"");
-	init_struct(&game);
+		msg_err("Error\n Mauvais fichier map");
+	initialisation_struct(&game);
 	fill_map(&game, av[1]);
 	check_map(&game);
 	duplicate_map(&game);
 	create_window(&game);
 	mlx_loop_hook(game.mlx, loop_hook, &game);
 	mlx_hook(game.win, 2, 1L<<0, key_hook, &game);
-	mlx_hook(game.win, 17, 0, on_destroy, &game);
+	mlx_hook(game.win, 17, 0, suppresion, &game);
 	mlx_loop(game.mlx);
 	exit(EXIT_SUCCESS);
 	return (0);

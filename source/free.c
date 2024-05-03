@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void	free_maps(t_data *game)
+void	free_map(t_data *game)
 {
 	int	i;
 
@@ -45,9 +45,9 @@ void	free_textures(t_data *game)
 	mlx_destroy_image(game->mlx, game->textures.moves);
 }
 
-int	on_destroy(t_data *game)
+int	suppresion(t_data *game)
 {
-	free_maps(game);
+	free_map(game);
 	free_textures(game);
 	mlx_destroy_window(game->mlx, game->win);
 	free(game->mlx);

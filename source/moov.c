@@ -26,7 +26,7 @@ void	move_check(t_data *game)
 	{
 		ft_putstr_fd("\nVous êtes tombé dans le Trou Noir !\n", 1);
 		ft_putstr_fd("Profitez du reste de votre vie dans le vide !\n", 1);
-		on_destroy(game);
+		suppresion(game);
 	}
 	if (game->map[game->p_pos.row][game->p_pos.col] == 'B')
 	{
@@ -37,7 +37,7 @@ void	move_check(t_data *game)
 		ft_putendl_fd("Un perdant, bon sang, bébé", 1);
 		ft_putendl_fd("Vous êtes un petit pleurnichard foutu", 1);
 		ft_putendl_fd("Vous êtes un perdant, tout comme moi", 1);
-		on_destroy(game);
+		suppresion(game);
 	}
 }
 
@@ -58,7 +58,7 @@ void	move_player(t_data *game, int row, int col)
 	ft_putstr_fd("Moves: ", 1);
 	ft_putnbr_fd(game->moves, 1);
 	ft_putstr_fd("\n", 1);
-	fill_window(game);
+	draw_win(game);
 }
 
 void	update_player_position(t_data *game, int keycode)

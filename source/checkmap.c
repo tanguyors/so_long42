@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void	check_closed_map(t_data *game)
+void	checkmap(t_data *game)
 {
 	int	i;
 	int	j;
@@ -26,12 +26,12 @@ void	check_closed_map(t_data *game)
 			if (i == 0 || i == game->rows - 1)
 			{
 				if (game->map[i][j] != '1')
-					error_message("Invalid map.");
+					msg_err("Error\n map invalide.");
 			}
 			else if (j == 0 || j == game->cols - 1)
 			{
 				if (game->map[i][j] != '1')
-					error_message("Invalid map.");
+					msg_err("Error\n map invalide");
 			}
 			j++;
 		}
@@ -47,15 +47,15 @@ void	check_last_row(t_data *game)
 	while (i < game->cols)
 	{
 		if (game->map[game->rows - 1][i] != '1')
-			error_message("Invalid map.");
+			msg_err("Error\n map invalide");
 		i++;
 	}
 	if (game->map[game->rows - 1][i] != '\0' && game->map[game->rows
 		- 1][i] != '\n')
-		error_message("Invalid map.");
+		msg_err("Error\n map invalide");
 }
 
-void	check_rect(t_data *game)
+void	is_rect(t_data *game)
 {
 	int	i;
 	int	row_len;
@@ -65,16 +65,16 @@ void	check_rect(t_data *game)
 	{
 		row_len = ft_strlen(game->map[i]) - 1;
 		if (row_len != game->cols)
-			error_message("Invalid map.");
+			msg_err("Error\n map invalide");
 		i++;
 	}
 	if (game->cols < 3 || game->rows < 3)
-		error_message("Invalid map.");
+		msg_err("Error\n map invalide");
 	if (game->cols == game->rows)
-		error_message("Invalid map.");
+		msg_err("Error\n map invalide");
 }
 
-void	count_map(t_data *game)
+void	count_game_element(t_data *game)
 {
 	int	i;
 	int	j;
@@ -97,7 +97,7 @@ void	count_map(t_data *game)
 				game->coins++;
 			else if (game->map[i][j] != '1' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'B')
-				error_message("Invalid map.");
+				msg_err("Error\n map invalide");
 		}
 		i++;
 	}
@@ -105,10 +105,10 @@ void	count_map(t_data *game)
 
 void	check_map(t_data *game)
 {
-	check_closed_map(game);
+	checkmap(game);
 	check_last_row(game);
-	check_rect(game);
-	count_map(game);
+	is_rect(game);
+	count_game_element(game);
 	if (game->exit != 1 || game->coins < 1 || game->player != 1)
-		error_message("Invalid map.");
+		msg_err("Invalid map.");
 }
